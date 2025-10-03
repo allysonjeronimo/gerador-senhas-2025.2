@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import Slider from '@react-native-community/slider';
 
 export default function App() {
   // JSX = JavaScript XML
   return (
     <View style={styles.container}>
-      <Image
+      <Image 
         source={require('./assets/secure-icon.png')}
         style={styles.logo}
       />
+      <Text style={styles.title}>10 Caracteres</Text>
       <View style={styles.sliderArea}>
          <Slider
           style={{height: 30}}
@@ -20,7 +21,12 @@ export default function App() {
           minimumTrackTintColor='#33aaff'
         />
       </View>
-      <Text>Hello World!</Text>
+      <Pressable style={({pressed}) => [
+        styles.button,
+        {opacity: (pressed) ? 0.7 : 1}
+      ]}>
+        <Text style={styles.buttonText} selectable={false}>Gerar Senha</Text>
+      </Pressable>
     </View>
   );
 }
@@ -28,7 +34,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#badbfeff',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -44,5 +50,22 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     width: 200,
     backgroundColor: "#fff"  
+  },
+  title:{
+    fontSize: 20,
+    color: '#274c6aff',
+    fontWeight: 'bold'
+  },
+  button:{
+    width: 200,
+    padding: 8,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#33aaff',
+  },
+  buttonText:{
+    color: '#fff',
+    fontSize: 20
   }
 });
